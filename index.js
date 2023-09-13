@@ -2,8 +2,9 @@ import express from "express";
 import * as dotenv from "dotenv";
 import connectDB from "./src/Config/connect.js";
 import studentRoute from "./src/route/studentRoute.js";
-//import bodyParser from "body-parser";
-//import cors from "cors";
+import programRoute from "./src/route/programRoute.js";
+import bodyParser from "body-parser";
+import cors from "cors";
 
 
 const app = express();
@@ -12,14 +13,15 @@ dotenv.config();
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-//app.use(bodyParser.urlencoded({ extended: false}))
-//app.use(
-  //  cors({
-    //    origin: "http://localhost:3000"
-  //  })
-//);
+app.use(bodyParser.urlencoded({ extended: false}))
+app.use(
+    cors({
+        origin: "http://localhost:3000"
+   })
+);
 
 app.use("/api", studentRoute)
+app.use("/api", programRoute)
 
 
 async function connect() {
@@ -32,7 +34,7 @@ async function connect() {
         console.log(err);
     }
 }
-connect();
+connect(); 
 
 
 
