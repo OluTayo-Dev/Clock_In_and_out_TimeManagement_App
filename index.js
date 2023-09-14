@@ -3,6 +3,8 @@ import * as dotenv from "dotenv";
 import connectDB from "./src/Config/connect.js";
 import studentRoute from "./src/route/studentRoute.js";
 import programRoute from "./src/route/programRoute.js";
+import facilitatorRoute from "./src/route/facilitatorRoute.js";
+import clockInRoute  from "./src/route/clockInRoute.js";
 import bodyParser from "body-parser";
 import cors from "cors";
 
@@ -22,6 +24,8 @@ app.use(
 
 app.use("/api", studentRoute)
 app.use("/api", programRoute)
+app.use("/api", facilitatorRoute)
+app.use("/api", clockInRoute)
 
 
 async function connect() {
